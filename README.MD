@@ -9,4 +9,4 @@ To run this script, after cloning do:
 This script runs a install script that stores homebrew in /tmp
 this is needed because the /home directory in feup computers are 
 limited to 300MB ish because it's stored in a remote server.
-This also circuvents the need for sudo to install stuff.
+This also circumvents the need for sudo to install stuff.
