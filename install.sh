@@ -12,12 +12,14 @@ echo "#LUIS POGGERS BREW FEUP SCRIPT ENV" >> $HOME/.bashrc
 echo "export HOMEBREW_CURL_PATH=~/bin/curl" >> $HOME/.bashrc
 echo "export HOMEBREW_CACHE=/tmp" >> $HOME/.bashrc
 echo 'export PATH="$HOME/bin:/tmp/homebrew/bin:$PATH"' >> $HOME/.bashrc 
+echo 'export CARGO_HOME=/tmp/cargo' >> $HOME/.bashrc
 
 fi
 
 . $HOME/.bashrc #reload bashrc in this session
 
 mkdir -p $HOME/bin
+mkdir -p /tmp/cargo
 cd $HOME/bin
 #download local copy of curl because ubuntu doesnt have by default ;-;
 #this assumes amd64 
