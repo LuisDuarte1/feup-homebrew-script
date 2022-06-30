@@ -13,6 +13,8 @@ echo "export HOMEBREW_CURL_PATH=~/bin/curl" >> $HOME/.bashrc
 echo "export HOMEBREW_CACHE=/tmp" >> $HOME/.bashrc
 echo 'export PATH="$HOME/bin:/tmp/homebrew/bin:$PATH"' >> $HOME/.bashrc 
 echo 'export CARGO_HOME=/tmp/cargo' >> $HOME/.bashrc
+echo 'export CMAKE_SYSTEM_INCLUDE_PATH=/tmp/homebrew/include' >> $HOME/.bashrc
+echo 'export CMAKE_SYSTEM_LIBRARY_PATH=/tmp/homebrew/lib' >> $HOME/.bashrc
 
 fi
 
