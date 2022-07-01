@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#we can't just store homebrew in tmp we must do it by user because FEUP doesn't allow
+#you to alter other user's files. This is the easier way to do it but every user must redownload everything even
+#though some other user might have it already
+USER = $(whoami)
+NEW_PATH = 'export PATH="$HOME/bin:/tmp/'+$USER+'/homebrew/bin:$PATH"'
 
 if grep -Fxq "#LUIS POGGERS BREW FEUP SCRIPT ENV" $HOME/.bashrc
 then
@@ -10,17 +15,16 @@ else
 #like 300mb of /home space 
 echo "#LUIS POGGERS BREW FEUP SCRIPT ENV" >> $HOME/.bashrc
 echo "export HOMEBREW_CURL_PATH=~/bin/curl" >> $HOME/.bashrc
-echo "export HOMEBREW_CACHE=/tmp" >> $HOME/.bashrc
-echo 'export PATH="$HOME/bin:/tmp/homebrew/bin:$PATH"' >> $HOME/.bashrc 
-echo 'export CARGO_HOME=/tmp/cargo' >> $HOME/.bashrc
-echo 'export CMAKE_PREFIX_PATH=/tmp/homebrew' >> $HOME/.bashrc
+echo "export HOMEBREW_CACHE=/tmp/$USER" >> $HOME/.bashrc
+echo  "export PATH='$HOME/bin:/tmp/$USER/homebrew/bin:$PATH'">> $HOME/.bashrc 
+echo  "export CARGO_HOME=/tmp/$USER/cargo" >> $HOME/.bashrc
+echo "export CMAKE_PREFIX_PATH=/tmp/$USER/homebrew" >> $HOME/.bashrc
 
 fi
 
 . $HOME/.bashrc #reload bashrc in this session
 
 mkdir -p $HOME/bin
-mkdir -p /tmp/cargo
 cd $HOME/bin
 #download local copy of curl because ubuntu doesnt have by default ;-;
 #this assumes amd64 
@@ -30,7 +34,10 @@ chmod +x curl
 
 #clone homebrew
 cd /tmp
+mkdir -p $(whoami)
+cd $(whoami)
+mkdir -p cargo
 git clone https://github.com/Homebrew/brew homebrew
 
+. $HOME/.bashrc 
 brew update --force
-
