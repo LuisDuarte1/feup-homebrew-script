@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+import os
+import sys
+import subprocess
+
+if __name__ == "__main__":
+    if(len(sys.argv)<2): 
+        print("brew-install was invoked without a package to install")
+        exit(1)
+    pkg_name = sys.argv[1]
+    print(f"Installing dependencies of {pkg_name} using bottles...")
+    
+    dependencies = subprocess.run(["brew", "deps", "-n", pkg_name],
+        capture_output=True)
+
+    if dependencies.returncode != 0:
+        print("An error has occurred when getting the dependencies:")
+        print(dependencies.stdout.decode())
+        print(dependencies.stderr.decode())
+        exit(dependencies.returncode)
+    
+    dependencies = dependencies.stdout.decode().split("\n")[:-1]
+    for dep in dependencies:
+        print(f"Installing dependency {dep}...")
+        install_bottle = subprocess.run(["brew", "install", "--force-bottle",
+            dep], capture_output=True)
+        if(install_bottle.returncode != 0):
+            print(f"An error has occurred when installing {dep}:")
+            print(dependencies.stdout.decode())
+            print(dependencies.stderr.decode())
+            exit(dependencies.returncode)
+    print(f"Finally installing the main package {pkg_name}...")
+    install_final = subprocess.run(["brew", "install", "--force-bottle", pkg_name])
+    if(install_final.returncode != 0):
+            print(f"An error has occurred when installing {pkg_name}:")
+            print(dependencies.stdout.decode())
+            print(dependencies.stderr.decode())
+            exit(dependencies.returncode)
+
+        
