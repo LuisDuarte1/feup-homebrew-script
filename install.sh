@@ -3,8 +3,7 @@
 #we can't just store homebrew in tmp we must do it by user because FEUP doesn't allow
 #you to alter other user's files. This is the easier way to do it but every user must redownload everything even
 #though some other user might have it already
-USER = $(whoami)
-NEW_PATH = 'export PATH="$HOME/bin:/tmp/'+$USER+'/homebrew/bin:$PATH"'
+USER=$(whoami)
 
 if grep -Fxq "#LUIS POGGERS BREW FEUP SCRIPT ENV" $HOME/.bashrc
 then
@@ -39,5 +38,5 @@ cd $(whoami)
 mkdir -p cargo
 git clone https://github.com/Homebrew/brew homebrew
 
-. $HOME/.bashrc 
+source ~/.bash_profile 
 brew update --force
