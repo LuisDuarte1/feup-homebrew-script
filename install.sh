@@ -15,7 +15,7 @@ else
 echo "#LUIS POGGERS BREW FEUP SCRIPT ENV" >> $HOME/.bashrc
 echo "export HOMEBREW_CURL_PATH=~/bin/curl" >> $HOME/.bashrc
 echo "export HOMEBREW_CACHE=/tmp/$USER" >> $HOME/.bashrc
-echo  "export PATH='$HOME/bin:/tmp/$USER/homebrew/bin:$PWD/scripts:$PATH'">> $HOME/.bashrc 
+echo  "export PATH=\"$HOME/bin:/tmp/$USER/homebrew/bin:$PWD/scripts:\${PATH}\"">> $HOME/.bashrc 
 echo  "export CARGO_HOME=/tmp/$USER/cargo" >> $HOME/.bashrc
 echo "export CMAKE_PREFIX_PATH=/tmp/$USER/homebrew" >> $HOME/.bashrc
 
