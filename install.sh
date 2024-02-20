@@ -38,5 +38,5 @@ cd $(whoami)
 mkdir -p cargo
 git clone https://github.com/Homebrew/brew homebrew
 
-source ~/.bash_profile 
+source ~/.bashrc
 brew update --force
